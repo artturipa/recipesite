@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <>
       <footer className={styles.footer}>
-        Sisällön oikeudet | Artturi Patrakka ja Tatja Syrjämäki
+        Sisältö | Artturi Patrakka ja Tatja Syrjämäki
       </footer>
     </>
   );

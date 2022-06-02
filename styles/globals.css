@@ -321,6 +321,7 @@ header a:hover {
 
 .blogPostContainer {
   background-color: var(--cardBackgroundColor);
+  word-break: break-word;
   padding: 4rem;
   border-radius: 0.5rem;
   position: absolute;
