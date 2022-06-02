@@ -1,10 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
-import defaultPostImage from "../public/images/godhand.jpeg";
+import defaultPostImage from "../public/images/foodgeneral.png";
 
 export default function Card({ post }) {
   const tags = ["SN Development", "Architecture", "didsdusd"];
-
+  console.log("DRAWING CARD");
+  console.dir(post);
   return (
     <div className="card">
       <Link href={`/blog/${post.path}`}>
@@ -33,7 +34,7 @@ export default function Card({ post }) {
               <div className="titleAndDate">
                 <h3>{post.meta.title}</h3>
                 <strong className="publishDate">
-                  Posted:{" "}
+                  Lisätty:{" "}
                   {new Date(
                     Date.parse(post.meta.publishDate)
                   ).toLocaleDateString()}
@@ -43,7 +44,7 @@ export default function Card({ post }) {
               <p>{post.meta.description}</p>
             </div>
             <div className="readMore">
-              <strong>Read More</strong>
+              <strong>Tsekkaa tämä</strong>
             </div>
           </div>
         </div>

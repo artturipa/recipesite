@@ -5,11 +5,13 @@ import getposts from "helperfunctions/getposts";
 import Card from "@components/Card";
 
 export default function Home({ posts }) {
+  console.log("NOW IN INDEX.js");
+  console.dir(posts);
   return (
     <>
       <div className="container">
         <Head>
-          <title>Artturi's Ramblings</title>
+          <title>Ruokavinkit / T&A</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
@@ -27,6 +29,8 @@ export default function Home({ posts }) {
 }
 
 export async function getStaticProps() {
+  console.log("NOW IN GET STATICPROPS INDEX.js");
+
   const posts = getposts(process.env.GITHUB_API_KEY);
 
   return {

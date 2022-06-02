@@ -5,6 +5,7 @@ import Markdown from "marked-react";
 import Image from "next/image";
 
 export default function PostPage({ postContent }) {
+  console.log("\n\n HERE STARTS SLUG \n\n");
   const dateFormatted = new Date(
     Date.parse(postContent.meta.publishDate)
   ).toLocaleDateString();
@@ -26,10 +27,10 @@ export default function PostPage({ postContent }) {
           </div>
           <h1 className="postTitle"> {postContent.meta.title}</h1>
           <div className="postPublished">
-            <strong>Written on</strong>{" "}
+            <strong>Raapustettu</strong>{" "}
             <strong className="date">{dateFormatted}</strong>{" "}
-            <strong>by </strong>
-            <strong className="author">Artturi Patrakka</strong>
+            <strong>/ </strong>
+            <strong className="author">Artturi & Tatja</strong>
           </div>
           <div className="divider" />
 
@@ -56,6 +57,7 @@ export default function PostPage({ postContent }) {
 }
 
 export async function getStaticPaths() {
+  console.log("GET STATIC PATHS GOING");
   const pathsUnformatted = await getpaths(process.env.GITHUB_API_KEY);
 
   const paths = pathsUnformatted.map((post) => {
@@ -73,6 +75,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { slug } }) {
+  console.log("GET STATIC PROPS GOING");
   const postContent = await getpostcontent(process.env.GITHUB_API_KEY, slug);
   return {
     props: {

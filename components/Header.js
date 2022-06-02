@@ -1,7 +1,8 @@
 import Image from "next/image";
-import headerBackground from "../public/images/arrowthing3.jpg";
+import headerBackground from "../public/images/ta2.jpg";
 
 export default function Header({ showHeaderContent }) {
+  console.log("DOING HEADER");
   const styleObj = {
     visibility: showHeaderContent ? "initial" : "hidden",
   };
@@ -12,8 +13,8 @@ export default function Header({ showHeaderContent }) {
 
       <div style={styleObj}>
         <h1>
-          Insights on IT Architecture and <br />
-          ServiceNow Development
+          Tatjan ja Artturin <br />
+          Herkkuruuat ! =)
         </h1>
         <div className="linkRow">
           <a href="/" target="_blank" className="headerLink">

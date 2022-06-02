@@ -6,8 +6,10 @@ export default async function (githubkey) {
     },
   };
 
+  console.log("\n\n HERE STARTS GETPATHS \n\n");
+
   const { data: blogContentResponse } = await axios.get(
-    "https://api.github.com/repos/artturipa/myblog/git/trees/main?recursive=1",
+    "https://api.github.com/repos/artturipa/recipes/git/trees/master?recursive=1",
     myHeaders
   );
 
@@ -19,6 +21,9 @@ export default async function (githubkey) {
     if (x.type === "tree") obj.path = x.path;
     else if (x.type === "blob" && x.path.endsWith(".md")) {
       obj.uri = x.path;
+    }
+
+    if (obj.uri && obj.path) {
       blogContentsArr.push(obj);
       obj = {};
     }
@@ -29,23 +34,40 @@ export default async function (githubkey) {
       blogContentsArr.map(
         (x) =>
           axios.get(
-            "https://raw.githubusercontent.com/artturipa/myblog/main/" + x.uri
+            "https://raw.githubusercontent.com/artturipa/recipes/master/" +
+              x.uri
           ),
         myHeaders
       )
     )),
   ];
 
+  console.log("%c \n\n blogContentsArr:\n\n ", "color:red");
+
+  console.dir(blogContentsArr);
+
+  console.log("%c \n\n blogContentTree:\n\n ", "color:red");
+
+  console.dir(blogContentTree);
+
+  console.log("%c \n\n contentResponseArr:\n\n ", "color:red");
+
+  console.dir(contentResponseArr);
+
   contentResponseArr.forEach((x, i) => {
     blogContentsArr[i].content = x.data;
   });
+
+  console.log("%c \n\n blogContentsArr:\n\n ", "color:red");
+
+  console.dir(blogContentsArr);
 
   const metaResponseArr = [
     ...(await Promise.all(
       blogContentsArr.map(
         (x) =>
           axios.get(
-            "https://raw.githubusercontent.com/artturipa/myblog/main/" +
+            "https://raw.githubusercontent.com/artturipa/recipes/master/" +
               encodeURIComponent(x.path) +
               "/" +
               "meta.json"
@@ -70,6 +92,9 @@ export default async function (githubkey) {
   );
 
   //const indexPageContentArr = publishedBlogContent.slice(0, 4);
+  console.log("%c \n\n Returning publishedblogcontent:\n\n ", "color:red");
+
+  console.dir(publishedBlogContent);
 
   return publishedBlogContent;
 }

@@ -3,6 +3,7 @@ import "@styles/globals.css";
 import Footer from "@components/Footer";
 
 function Application({ Component, pageProps }) {
+  console.log("NOW IN _app.js");
   const showHeaderContent = pageProps.showHeaderContent ? true : false;
   return (
     <>

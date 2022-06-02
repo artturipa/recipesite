@@ -6,16 +6,21 @@ export default async function (githubkey, path) {
     },
   };
 
+  console.log("\n\n HERE STARTS GETPOSTCONTENT \n\n");
+  console.log("\n\n path: " + path + " \n\n");
+
   const { data: blogPostMD } = await axios.get(
-    "https://raw.githubusercontent.com/artturipa/myblog/main/" +
+    "https://raw.githubusercontent.com/artturipa/recipes/master/" +
       encodeURIComponent(path) +
       "/" +
       "blog.md",
     myHeaders
   );
+  console.log("PROCESSED A BIT");
+  console.dir(blogPostMD);
 
   const { data: blogPostMeta } = await axios.get(
-    "https://raw.githubusercontent.com/artturipa/myblog/main/" +
+    "https://raw.githubusercontent.com/artturipa/recipes/master/" +
       encodeURIComponent(path) +
       "/" +
       "meta.json",
@@ -27,6 +32,8 @@ export default async function (githubkey, path) {
     meta: blogPostMeta,
     path: path,
   };
+
+  console.dir(postContent);
 
   return postContent;
 }
